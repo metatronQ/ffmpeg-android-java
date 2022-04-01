@@ -5,6 +5,10 @@ import android.os.AsyncTask;
 
 import java.io.File;
 
+/**
+ * Android10 及以上不允许调用/data/data中的文件，因此不需要每次转移文件至app中
+ */
+@Deprecated
 class FFmpegLoadLibraryAsyncTask extends AsyncTask<Void, Void, Boolean> {
 
     private final String cpuArchNameFromAssets;

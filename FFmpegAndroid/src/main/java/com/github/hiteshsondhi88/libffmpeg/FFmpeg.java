@@ -33,6 +33,7 @@ public class FFmpeg implements FFmpegInterface {
         return instance;
     }
 
+    @Deprecated
     @Override
     public void loadBinary(FFmpegLoadBinaryResponseHandler ffmpegLoadBinaryResponseHandler) throws FFmpegNotSupportedException {
         String cpuArchNameFromAssets = null;

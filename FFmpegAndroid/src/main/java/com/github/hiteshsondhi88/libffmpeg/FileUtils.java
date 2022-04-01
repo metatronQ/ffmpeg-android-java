@@ -52,18 +52,21 @@ class FileUtils {
 	}
 
     static String getFFmpeg(Context context) {
-        return getFilesDirectory(context).getAbsolutePath() + File.separator + FileUtils.ffmpegFileName;
+//        return getFilesDirectory(context).getAbsolutePath() + File.separator + FileUtils.ffmpegFileName;
+        // android 10 及以上不允许使用/data/data下的文件
+        // 因此需要在编译时加载进/data/app下使用:/data/app/对应下的文件
+        return context.getApplicationInfo().nativeLibraryDir + File.separator + FileUtils.ffmpegFileName;
     }
 
     static String getFFmpeg(Context context, Map<String,String> environmentVars) {
-        String ffmpegCommand = "";
+        StringBuilder ffmpegCommand = new StringBuilder();
         if (environmentVars != null) {
             for (Map.Entry<String, String> var : environmentVars.entrySet()) {
-                ffmpegCommand += var.getKey()+"="+var.getValue()+" ";
+                ffmpegCommand.append(var.getKey()).append("=").append(var.getValue()).append(" ");
             }
         }
-        ffmpegCommand += getFFmpeg(context);
-        return ffmpegCommand;
+        ffmpegCommand.append(getFFmpeg(context));
+        return ffmpegCommand.toString();
     }
 
     static String SHA1(String file) {
