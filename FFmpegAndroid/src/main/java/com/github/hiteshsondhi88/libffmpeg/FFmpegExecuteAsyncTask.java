@@ -106,4 +106,10 @@ class FFmpegExecuteAsyncTask extends AsyncTask<Void, String, CommandResult> {
         return Util.isProcessCompleted(process);
     }
 
+    /**
+     * 进程阻塞超时，外部调用杀死进程
+     */
+    void killProcess() {
+        Util.destroyProcess(process);
+    }
 }

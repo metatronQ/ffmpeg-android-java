@@ -116,6 +116,10 @@ public class FFmpeg implements FFmpegInterface {
         return Util.killAsync(ffmpegLoadLibraryAsyncTask) || Util.killAsync(ffmpegExecuteAsyncTask);
     }
 
+    public void killShellProcess() {
+        ffmpegExecuteAsyncTask.killProcess();
+    }
+
     @Override
     public void setTimeout(long timeout) {
         if (timeout >= MINIMUM_TIMEOUT) {
